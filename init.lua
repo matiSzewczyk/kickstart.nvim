@@ -110,7 +110,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -151,11 +151,9 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
+    'ramojus/mellifluous.nvim',
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'mellifluous'
     end,
   },
 
@@ -166,7 +164,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },
@@ -275,6 +273,9 @@ vim.o.termguicolors = true
 -- Tabs to 4 spaces
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+
+-- Current line highlight
+vim.opt.cursorline = true
 
 -- [[ Basic Keymaps ]]
 
@@ -547,6 +548,10 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+vim.api.nvim_exec([[
+  autocmd BufWritepre * :Format
+]], false)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
