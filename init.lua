@@ -152,18 +152,11 @@ require('lazy').setup({
   },
 
   {
-    'ramojus/mellifluous.nvim',
-    config = function()
-      require 'mellifluous'.setup({
-        mellifluous = {
-          neutral = true,      -- set this to false and bg_contrast to 'medium' for original mellifluous (then it was called meliora theme)
-          bg_contrast = 'hard' -- options: 'soft', 'medium', 'hard'
-        }
-      })
-      vim.cmd.colorscheme 'mellifluous'
-    end,
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -214,6 +207,12 @@ require('lazy').setup({
         end,
       },
     },
+  },
+
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
   },
 
   {
@@ -301,6 +300,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Colorscheme
+vim.cmd.colorscheme 'tokyonight-night'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
